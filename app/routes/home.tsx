@@ -83,9 +83,9 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <AppLayout>
-      <div className="max-w-lg mx-auto w-full flex flex-col gap-6 pb-36 sm:pb-32">
+      <div className="w-full flex flex-col gap-6 pb-36 px-0 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
         {/* Stories Row */}
-        <div className="flex items-center gap-4 overflow-x-auto flex-nowrap py-2 px-1 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent md:scrollbar-thumb-purple-200 md:scrollbar-track-transparent scrollbar-hide">
+        <div className="flex items-center gap-4 overflow-x-auto flex-nowrap py-2 px-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent scrollbar-hide">
           {stories.map((story, idx) => (
             <div key={idx} className="flex flex-col items-center min-w-[64px]">
               <div className={`w-14 h-14 rounded-full border-4 ${story.active ? 'border-fuchsia-500' : 'border-gray-300'} flex items-center justify-center shadow-md`}>
@@ -96,14 +96,14 @@ export default function Home() {
           ))}
         </div>
         {/* Action Buttons */}
-        <div className="flex gap-4 justify-center">
-          <button className="px-7 py-2 rounded-full bg-white dark:bg-gray-800 shadow text-fuchsia-600 font-bold border border-fuchsia-200 dark:border-gray-700 hover:bg-fuchsia-50 dark:hover:bg-gray-700 transition">Make Friends</button>
-          <button className="px-7 py-2 rounded-full bg-white dark:bg-gray-800 shadow text-blue-600 font-bold border border-blue-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-700 transition">Search Partners</button>
+        <div className="flex gap-4 justify-center w-full px-2">
+          <button className="flex-1 px-7 py-2 rounded-full bg-white dark:bg-gray-800 shadow-lg text-fuchsia-600 font-bold border border-fuchsia-200 dark:border-gray-700 hover:bg-fuchsia-50 dark:hover:bg-gray-700 transition">Make Friends</button>
+          <button className="flex-1 px-7 py-2 rounded-full bg-white dark:bg-gray-800 shadow-lg text-blue-600 font-bold border border-blue-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-700 transition">Search Partners</button>
         </div>
         {/* Featured Cards */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 w-full">
           {featuredCards.map((card, idx) => (
-            <div key={idx} className="relative rounded-3xl overflow-hidden shadow-2xl bg-white dark:bg-gray-900 mb-2 aspect-[4/3] flex flex-col justify-end">
+            <div key={idx} className="relative rounded-3xl overflow-hidden shadow-2xl bg-white dark:bg-gray-900 mb-2 aspect-[4/3] flex flex-col justify-end w-full">
               <img src={card.img} alt={card.name} className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
                 <img src={card.avatar} alt={card.name} className="w-10 h-10 rounded-full border-2 border-white object-cover" />
@@ -118,11 +118,11 @@ export default function Home() {
           ))}
         </div>
         {/* Spacer for fixed footer */}
-        <div className="h-28" />
+        <div className="h-32" />
       </div>
-      {/* Bottom Navigation Bar */}
-      <nav className="fixed bottom-0 left-0 right-0 w-full flex justify-center z-50">
-        <div className="w-full max-w-lg mx-auto flex items-center justify-between bg-white/95 dark:bg-gray-900/95 px-4 py-3 rounded-full shadow-2xl border-t border-gray-200 dark:border-gray-800">
+      {/* Floating Bottom Navigation Bar */}
+      <nav className="fixed bottom-4 left-0 right-0 flex justify-center z-50 pointer-events-none">
+        <div className="pointer-events-auto w-full max-w-xs mx-auto flex items-center justify-between bg-white/95 dark:bg-gray-900/95 px-2 py-3 rounded-full shadow-2xl border-t border-gray-200 dark:border-gray-800">
           {navButtons.map((btn, idx) =>
             btn.center ? (
               <button

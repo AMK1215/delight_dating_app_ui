@@ -19,18 +19,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Sidebar */}
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Sidebar Drawer */}
       <div
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${sidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         onClick={() => setSidebarOpen(false)}
       />
       <aside
-        className={`fixed z-50 top-0 left-0 h-full w-72 bg-gradient-to-br from-purple-200 to-blue-100 dark:from-gray-800 dark:to-gray-900 shadow-xl transform transition-transform duration-300 lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed z-50 top-0 left-0 h-full w-72 bg-gradient-to-br from-purple-200 to-blue-100 dark:from-gray-800 dark:to-gray-900 shadow-xl transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex items-center gap-3 p-6 pb-2">
           <button
-            className="lg:hidden text-2xl mr-2"
+            className="text-2xl mr-2"
             onClick={() => setSidebarOpen(false)}
             aria-label="Close sidebar"
           >
@@ -68,11 +68,11 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </div>
       </aside>
       {/* Main content area */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col w-full">
         {/* Top bar */}
-        <header className="flex items-center h-16 px-4 bg-white/80 dark:bg-gray-900/80 shadow-sm">
+        <header className="flex items-center h-16 px-4 bg-white/80 dark:bg-gray-900/80 shadow-sm w-full">
           <button
-            className="lg:hidden text-2xl mr-4"
+            className="text-2xl mr-4"
             onClick={() => setSidebarOpen(true)}
             aria-label="Open sidebar"
           >
@@ -80,7 +80,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </button>
           <h1 className="text-xl font-bold text-gray-800 dark:text-white">Explore</h1>
         </header>
-        <main className="flex-1 p-2 sm:p-4 md:p-6 lg:p-8">{children}</main>
+        <main className="flex-1 w-full px-0">{children}</main>
       </div>
     </div>
   );
