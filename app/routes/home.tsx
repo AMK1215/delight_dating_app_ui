@@ -83,7 +83,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <AppLayout>
-      <div className="w-full flex flex-col gap-6 pb-36 px-0 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
+      <div className="w-full flex flex-col gap-6 pb-36 px-0 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen lg:max-w-lg lg:mx-auto lg:pb-8 lg:px-0">
         {/* Stories Row */}
         <div className="flex items-center gap-4 overflow-x-auto flex-nowrap py-2 px-2 scrollbar-thin scrollbar-thumb-purple-300 scrollbar-track-transparent scrollbar-hide">
           {stories.map((story, idx) => (
@@ -117,28 +117,28 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {/* Spacer for fixed footer */}
-        <div className="h-32" />
+        {/* Spacer for fixed footer (mobile/tablet) or normal padding (desktop) */}
+        <div className="h-32 lg:h-8" />
       </div>
-      {/* Floating Bottom Navigation Bar */}
-      <nav className="fixed bottom-4 left-0 right-0 flex justify-center z-50 pointer-events-none">
-        <div className="pointer-events-auto w-full max-w-xs mx-auto flex items-center justify-between bg-white/95 dark:bg-gray-900/95 px-2 py-3 rounded-full shadow-2xl border-t border-gray-200 dark:border-gray-800">
+      {/* Floating Bottom Navigation Bar (mobile/tablet), full width on desktop */}
+      <nav className="fixed bottom-4 left-0 right-0 flex justify-center z-50 pointer-events-none lg:static lg:bottom-auto lg:left-auto lg:right-auto lg:w-full lg:justify-start lg:px-0 lg:pt-4 lg:pointer-events-auto">
+        <div className="pointer-events-auto w-full max-w-xs mx-auto flex items-center justify-between bg-white/95 dark:bg-gray-900/95 px-2 py-3 rounded-full shadow-2xl border-t border-gray-200 dark:border-gray-800 lg:max-w-full lg:rounded-none lg:shadow-none lg:border-t-0 lg:mx-0 lg:px-0 lg:py-2">
           {navButtons.map((btn, idx) =>
             btn.center ? (
               <button
                 key={btn.label}
-                className="flex flex-col items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white rounded-full p-5 -mt-14 shadow-2xl border-4 border-white dark:border-gray-900 focus:outline-none w-20 h-20 z-10"
-                style={{ boxShadow: '0 8px 32px 0 rgba(128,90,213,0.18)' }}
+                className="flex flex-col items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white rounded-full p-5 -mt-14 shadow-2xl border-4 border-white dark:border-gray-900 focus:outline-none w-20 h-20 z-10 lg:static lg:mt-0 lg:w-14 lg:h-14 lg:p-0 lg:bg-gradient-to-r lg:from-pink-400 lg:via-purple-400 lg:to-blue-400"
+                style={idx === 2 ? { boxShadow: '0 8px 32px 0 rgba(128,90,213,0.18)' } : {}}
               >
                 {btn.icon}
               </button>
             ) : (
               <button
                 key={btn.label}
-                className={`flex flex-col items-center flex-1 ${btn.active ? 'text-fuchsia-500 font-bold' : 'text-gray-400'} focus:outline-none`}
+                className={`flex flex-col items-center flex-1 ${btn.active ? 'text-fuchsia-500 font-bold' : 'text-gray-400'} focus:outline-none lg:text-base lg:font-normal`}
               >
                 {btn.icon}
-                <span className="text-xs mt-1">{btn.label}</span>
+                <span className="text-xs mt-1 lg:mt-0 lg:text-base">{btn.label}</span>
               </button>
             )
           )}
